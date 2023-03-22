@@ -95,6 +95,9 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Cart::where('id', $id);
+        // dd($data);
+        $data->delete();
+        return redirect()->route('order.index');
     }
 }

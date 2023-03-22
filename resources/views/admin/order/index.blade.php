@@ -14,7 +14,8 @@
                                         <select name="product_id" id="" class="form-control">
                                             <option selected disabled>-- Pilih produk --</option>
                                             @foreach ($product as $item)
-                                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                <option value="{{ $item->id }}">{{ $item->name }} - Rp.
+                                                    {{ number_format($item->price) }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -36,6 +37,7 @@
                                             <th>Nama Produk</th>
                                             <th>Qty</th>
                                             <th>Sub Total</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -43,7 +45,19 @@
                                             <tr>
                                                 <td>{{ $cart->product->name }}</td>
                                                 <td>{{ $cart->qty }}</td>
-                                                <td>{{ $cart->sub_total }}</td>
+                                                <td>Rp. {{ number_format($cart->sub_total) }}</td>
+                                                <td>
+                                                    <form action="{{ route('order.destroy', $cart->id) }}" method="post">
+                                                        @method('delete')
+                                                        @csrf
+                                                        <div class="btn-group">
+                                                            <button type="submit" class="btn btn-danger btn-sm"
+                                                                onclick="return confirm('Apakah anda yakin mau menghapus?')">
+                                                                <i class='bx bx-trash'></i>
+                                                            </button>
+                                                        </div>
+                                                    </form>
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>

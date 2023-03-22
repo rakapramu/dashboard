@@ -57,28 +57,28 @@
 
     <ul class="menu-inner py-1">
         <!-- Dashboard -->
-        <li class="menu-item">
+        <li class="menu-item {{ request()->is('admin') ? 'active' : '' }}">
             <a href="{{ route('dashboard') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
             </a>
         </li>
-        <li class="menu-item">
+        <!-- Components -->
+        <li class="menu-header small text-uppercase"><span class="menu-header-text">Components</span></li>
+        <!-- Cards -->
+        <li class="menu-item {{ request()->is('admin/category*') ? 'active' : '' }}">
             <a href="{{ route('category.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Category</div>
             </a>
         </li>
-        <!-- Components -->
-        <li class="menu-header small text-uppercase"><span class="menu-header-text">Components</span></li>
-        <!-- Cards -->
-        <li class="menu-item {{ request()->is('product*') ? 'active' : '' }}">
+        <li class="menu-item {{ request()->is('admin/product*') ? 'active' : '' }}">
             <a href="{{ route('product.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
                 <div data-i18n="Basic">Product</div>
             </a>
         </li>
-        <li class="menu-item {{ request()->is('order*') ? 'active' : '' }}">
+        <li class="menu-item {{ request()->is('admin/order*') ? 'active' : '' }}">
             <a href="{{ route('order.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
                 <div data-i18n="Basic">Order</div>

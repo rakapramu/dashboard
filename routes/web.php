@@ -21,10 +21,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin', [DashbardController::class, 'index'])->name('dashboard');
-Route::resource('category', CategoryController::class);
-Route::resource('product', ProductController::class);
-Route::resource('order', OrderController::class);
+
+Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
+    Route::get('/', [DashbardController::class, 'index'])->name('dashboard');
+    Route::resource('category', CategoryController::class);
+    Route::resource('product', ProductController::class);
+    Route::resource('order', OrderController::class);
+});
 
 
 Auth::routes();
